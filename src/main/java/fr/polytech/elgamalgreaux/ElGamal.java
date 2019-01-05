@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ElGamal {
 
-    private final int order = 6;
+    public static final int order = 6;
 
     private int generator;
 
