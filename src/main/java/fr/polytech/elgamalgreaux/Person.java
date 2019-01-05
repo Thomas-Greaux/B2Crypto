@@ -1,5 +1,7 @@
 package fr.polytech.elgamalgreaux;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Person {
@@ -30,5 +32,13 @@ public class Person {
 
     public int getSharedValue() {
         return sharedValue;
+    }
+
+    public List<Integer> getPublicKey() {
+        List<Integer> res = new ArrayList<>();
+        res.add(order);
+        res.add(generator);
+        res.add(sharedValue);
+        return res;
     }
 }
