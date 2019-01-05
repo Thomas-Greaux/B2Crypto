@@ -5,11 +5,15 @@ import java.util.Random;
 public class Person {
     private int order;
     private int privateKey;
+    private int generator;
+    private int sharedValue;
 
-    public Person(int order) {
+    public Person(int order, int generator) {
         this.order = order;
+        this.generator = generator;
         Random rand = new Random();
         privateKey = rand.nextInt(order-2)+1; //Value between 1 and order-1
+        sharedValue = (int) Math.pow(generator, privateKey) % (order+1);
     }
 
     public int getOrder() {
@@ -18,5 +22,13 @@ public class Person {
 
     public int getPrivateKey() {
         return privateKey;
+    }
+
+    public int getGenerator() {
+        return generator;
+    }
+
+    public int getSharedValue() {
+        return sharedValue;
     }
 }
