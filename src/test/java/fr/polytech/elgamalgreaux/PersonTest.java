@@ -34,4 +34,11 @@ public class PersonTest {
 
         assertEquals((int) Math.pow(generator, privateKey) % (order+1), sharedValue);
     }
+
+    @Test
+    public void findModularMultiplicativeInverseTest() {
+        for (int i = 1; i <= ElGamal.order; i++) {
+            assertEquals(1, i*Person.findModularMultiplicativeInverse(i, ElGamal.order+1) % (ElGamal.order+1));
+        }
+    }
 }

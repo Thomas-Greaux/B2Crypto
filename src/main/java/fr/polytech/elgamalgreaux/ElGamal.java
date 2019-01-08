@@ -6,12 +6,18 @@ import java.util.List;
 
 public class ElGamal {
 
-    public static final int order = 6;
+    public static final int order = 16;
 
     private int generator;
 
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        System.out.println("ElGamal cryptography");
+
+        ElGamal elGamal = new ElGamal();
+        Person alice = new Person(order, elGamal.getGenerator());
+        Person bob = new Person(order, elGamal.getGenerator());
+
+        bob.sendEncrypted(12, alice);
     }
 
     public ElGamal() {
