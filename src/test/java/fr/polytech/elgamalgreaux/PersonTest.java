@@ -9,36 +9,29 @@ import static org.junit.Assert.assertTrue;
 
 public class PersonTest {
 
-    private  ElGamal elGamal = new ElGamal();
+    private Group group = new Group();
     private Person person;
 
     @Before
     public void SetUp() {
-        person = new Person(ElGamal.order, elGamal.getGenerator());
+        person = new Person(group);
     }
 
     @Test
     public void privateKeyWithinOrderTest() {
-        int order = person.getOrder();
-        int privateKey = person.getPrivateKey();
+        int order = group.getOrder();
+        long privateKey = person.getPrivateKey();
         assertTrue(privateKey < order);
         assertTrue(0 < privateKey);
     }
 
     @Test
     public void sharedValueTest() {
-        int order = person.getOrder();
-        int privateKey = person.getPrivateKey();
-        int generator = person.getGenerator();
-        int sharedValue = person.getSharedValue();
+        int prime = group.getPrime();
+        long privateKey = person.getPrivateKey();
+        long generator = group.getGenerator();
+        long sharedValue = person.getSharedValue();
 
-        assertEquals((int) Math.pow(generator, privateKey) % (order+1), sharedValue);
-    }
-
-    @Test
-    public void findModularMultiplicativeInverseTest() {
-        for (int i = 1; i <= ElGamal.order; i++) {
-            assertEquals(1, i*Person.findModularMultiplicativeInverse(i, ElGamal.order+1) % (ElGamal.order+1));
-        }
+        assertEquals(Group.myPow(generator, privateKey, prime), sharedValue);
     }
 }
