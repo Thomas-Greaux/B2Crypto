@@ -7,10 +7,17 @@ import java.util.List;
 public class Group {
 
     //TODO: make it as parameters
-    private final int order = 1049;
-    private final int prime = 2099;
+    private final int order = 5;
+    private final int prime = 11;
+    //private final int prime = 2099;
+    //private final int order = 1049;
     private long generator;
     private List<Integer> quadratic_residue = new ArrayList<>();
+
+    public static void main(String[] args) {
+        System.out.println(myPow(2, 3, 5));
+        System.out.println(myPow(2, 7, 5));
+    }
 
     public Group(){
         generator = findGenerator();
@@ -36,30 +43,18 @@ public class Group {
     }
 
     private boolean checkGenerator(int g) {
-        /*
-        List<Integer> generated_elements = new ArrayList<>();
-        for(int i = 0; i < prime; i++) {
-            generated_elements.add((int) Math.pow(g, i) % prime);
-        }
-
-        Collections.sort(generated_elements);
-
-        for(int i = 0; i < generated_elements.size(); i++) {
-            if(i != generated_elements.get(i)) return false;
-        }
-        return true;
-        */
-
         long tmp = myPow(g, order, prime);
-        return tmp == 1;
+        return (tmp == 1) && (myPow(g, 2, prime) != 1);
     }
 
     public static long myPow(long a, long b, long m) {
-        for (long i = 1; i <= b; i++) {
-            a *= a;
-            a %= m;
+        long tmp = a;
+        if(b == 0) return 1;
+        for (long i = 1; i < b; i++) {
+            tmp *= a;
+            tmp %= m;
         }
-        return a;
+        return tmp;
     }
 
     public static boolean checkPrime(int p) {

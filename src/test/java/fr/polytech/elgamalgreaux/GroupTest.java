@@ -38,8 +38,8 @@ public class GroupTest {
         long g = group.getGenerator();
         assertNotEquals(g, -1);
         List<Long> generated_elements = new ArrayList<>();
-        for(int i = 0; i < group.getPrime(); i++) {
-            generated_elements.add(Group.myPow(g, i, group.getPrime()));
+        for(int i = 0; i < group.getOrder()-1; i++) {
+            generated_elements.add(Group.myPow(g, i, group.getOrder()));
         }
         Collections.sort(generated_elements);
         for(int i = 0; i < generated_elements.size(); i++) {
