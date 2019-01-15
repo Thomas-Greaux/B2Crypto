@@ -46,4 +46,19 @@ public class GroupTest {
             assertEquals(i, generated_elements.get(i)-1);
         }
     }
+
+    @Test
+    public void checkMyPow() {
+        assertEquals(1, Group.myPow(2, 0, 5));
+        assertEquals(1, Group.myPow(2, 4, 5));
+
+        assertEquals(2, Group.myPow(2, 1, 5));
+        assertEquals(2, Group.myPow(2, 5, 5));
+
+        assertEquals(4, Group.myPow(2, 2, 5));
+        assertEquals(4, Group.myPow(2, 6, 5));
+
+        assertEquals(3, Group.myPow(2, 3, 5));
+        assertEquals(3, Group.myPow(2, 7, 5));
+    }
 }
