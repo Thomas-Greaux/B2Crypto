@@ -1,9 +1,5 @@
 package fr.polytech.elgamalgreaux;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class Group {
 
     //TODO: make it as parameters
