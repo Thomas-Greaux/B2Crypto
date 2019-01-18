@@ -61,4 +61,14 @@ public class GroupTest {
         assertEquals(3, Group.myPow(2, 3, 5));
         assertEquals(3, Group.myPow(2, 7, 5));
     }
+
+    @Test
+    public void jacobiTest() {
+        assertEquals(1, group.jacobi(3));
+        assertEquals(1, group.jacobi(4));
+        assertEquals(1, group.jacobi(5));
+        assertEquals(1, group.jacobi(9));
+
+        assertNotEquals(1, group.jacobi(2));
+    }
 }

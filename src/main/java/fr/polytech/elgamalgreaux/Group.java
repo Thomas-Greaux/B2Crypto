@@ -12,7 +12,6 @@ public class Group {
     //private final int prime = 2099;
     //private final int order = 1049;
     private long generator;
-    private List<Integer> quadratic_residue = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(myPow(2, 3, 5));
@@ -21,14 +20,14 @@ public class Group {
 
     public Group(){
         generator = findGenerator();
-        for(int i = 1; i < prime; i++) {
-            if(!quadratic_residue.contains(i*i)) quadratic_residue.add(i*i);
-        }
-        Collections.sort(quadratic_residue);
     }
 
     public boolean isQuadraticResidue(int k) {
-        return quadratic_residue.contains(k);
+        return jacobi(k) == 1;
+    }
+
+    public int jacobi(int k) {
+        return (int) myPow(k, (prime-1)/2, prime);
     }
 
     public int inverse(int k) {
