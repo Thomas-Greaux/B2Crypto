@@ -71,4 +71,14 @@ public class GroupTest {
 
         assertNotEquals(1, group.jacobi(2));
     }
+
+    @Test
+    public void isQuadraticResidueTest() {
+        assertTrue(group.isQuadraticResidue(3));
+        assertTrue(group.isQuadraticResidue(4));
+        assertTrue(group.isQuadraticResidue(5));
+        assertTrue(group.isQuadraticResidue(9));
+
+        assertFalse(group.isQuadraticResidue(2));
+    }
 }

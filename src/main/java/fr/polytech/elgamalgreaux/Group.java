@@ -5,14 +5,10 @@ public class Group {
     //TODO: make it as parameters
     private final int order = 5;
     private final int prime = 11;
-    //private final int prime = 2099;
     //private final int order = 1049;
-    private long generator;
+    //private final int prime = 2099;
 
-    public static void main(String[] args) {
-        System.out.println(myPow(2, 3, 5));
-        System.out.println(myPow(2, 7, 5));
-    }
+    private long generator;
 
     public Group(){
         generator = findGenerator();
