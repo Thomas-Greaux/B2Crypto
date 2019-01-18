@@ -34,7 +34,10 @@ public class Person {
 
     public void sendEncrypted(int m, Person dest) {
 
-        System.out.println("Message: " + m);
+        // We make sure that the message is in the group
+        m %= group.getPrime();
+
+        System.out.println("Message: " + m + " residue quadratic? " + group.isQuadraticResidue(m));
 
         List<Long> dest_publicKey = dest.getPublicKey();
         long eph_key = new Random().nextInt(group.getOrder()-2)+1;
@@ -43,6 +46,7 @@ public class Person {
         long c2 = s*m % group.getPrime();
 
         System.out.println("Encrypted: (" + c1 + ", " + c2 + ")");
+        System.out.println(c2 + " residue quadratic? " + group.isQuadraticResidue((int) c2));
 
         List<Long> encrypted = new ArrayList<>();
         encrypted.add(c1);
