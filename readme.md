@@ -1,7 +1,4 @@
 # Cryptography ElGamal
 
-## TODO
-
-* Find a way to not leak the information of quadratic
-  * Limit yourself to the sub group where every number is quadratic
-* Refuse messages >= 11
+This a simple, somewhat tested, ElGamal encryption scheme implementation.  
+We only encode messages that are in the QR sub group of Zq, where q is a safe prime, in order to prevent the leaking of 1 bit of information.  
