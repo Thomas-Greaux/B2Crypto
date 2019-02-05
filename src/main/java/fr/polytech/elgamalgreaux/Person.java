@@ -35,7 +35,10 @@ public class Person {
     public List<Long> encrypt(int m, Person dest) {
 
         // We make sure that the message is in the group
-        m %= group.getPrime();
+        if(!group.isInGroup(m)) {
+            System.out.println(m + " is not in the subgroup, exiting...");
+            return null;
+        }
 
         // Encryption
         List<Long> dest_publicKey = dest.getPublicKey();

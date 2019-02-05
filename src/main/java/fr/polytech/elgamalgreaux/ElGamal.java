@@ -1,20 +1,27 @@
 package fr.polytech.elgamalgreaux;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElGamal {
 
-    public static final int MESSAGE = 1;
+    public static final int MESSAGE = 2;
 
     public static void main(String[] args) {
         elGamal(MESSAGE);
 
         /*
-        for(int i = -2; i < 47; i++) {
+        List<Integer> test = new ArrayList<>();
+        test.add(-2);
+        test.add(0);
+        test.add(2);
+        test.add(11);
+        test.add(12);
+
+        for(int i : test) {
             elGamal(i);
         }
         */
-
     }
 
     public static void elGamal(int message) {
@@ -24,18 +31,12 @@ public class ElGamal {
         Person alice = new Person(group);
         Person bob = new Person(group);
 
-        message %= group.getPrime();
-
-        if(!group.isQuadraticResidue(message)) {
-            System.out.println(message + " is not a quadratic residue, exiting...");
-            return;
-        }
-
-
         System.out.println("Message: " + message);
 
         // Ciphering
         List<Long> encrypted = bob.encrypt(message, alice);
+
+        if(encrypted == null) return;
 
         // Verifying that the cipher is QR
         long c1 = encrypted.get(0);

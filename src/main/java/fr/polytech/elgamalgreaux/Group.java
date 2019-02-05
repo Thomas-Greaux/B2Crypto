@@ -14,6 +14,10 @@ public class Group {
         generator = findGenerator();
     }
 
+    public boolean isInGroup(int k) {
+        return isQuadraticResidue(k) && k > 0 && k < prime;
+    }
+
     public boolean isQuadraticResidue(int k) {
         return jacobi(k) == 1;
     }
@@ -34,8 +38,7 @@ public class Group {
     }
 
     private boolean checkGenerator(int g) {
-        long tmp = myPow(g, order, prime);
-        return (tmp == 1) && (myPow(g, 2, prime) != 1);
+        return isQuadraticResidue(g) && (g != 1);
     }
 
     public static long myPow(long a, long b, long m) {
