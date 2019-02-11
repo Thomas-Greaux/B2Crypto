@@ -15,14 +15,18 @@ public class ElGamalTest {
 
     @Before
     public void setUp() {
-        group = new Group();
+        try {
+            group = new Group();
+        } catch (NotASafePrimeException e) {
+            e.printStackTrace();
+        }
         alice = new Person(group);
         bob = new Person(group);
     }
 
     @Test
     public void validEncryptionTest() {
-        long message1 = 2;
+        long message1 = 5;
         long message2 = group.getPrime()/2;
 
         List<Long> messages = new ArrayList<>();

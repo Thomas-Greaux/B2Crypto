@@ -10,7 +10,15 @@ import static org.junit.Assert.*;
 
 public class GroupTest {
 
-    private Group group = new Group();
+    private Group group;
+
+    {
+        try {
+            group = new Group();
+        } catch (NotASafePrimeException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void inverseTest() {

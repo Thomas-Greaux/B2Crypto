@@ -9,7 +9,16 @@ import static org.junit.Assert.assertTrue;
 
 public class PersonTest {
 
-    private Group group = new Group();
+    private Group group;
+
+    {
+        try {
+            group = new Group();
+        } catch (NotASafePrimeException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Person person;
 
     @Before

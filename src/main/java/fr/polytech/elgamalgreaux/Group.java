@@ -10,7 +10,8 @@ public class Group {
 
     private long generator;
 
-    public Group(){
+    public Group() throws NotASafePrimeException {
+        if((prime-1)/2 != order) throw new NotASafePrimeException();
         generator = findGenerator();
     }
 

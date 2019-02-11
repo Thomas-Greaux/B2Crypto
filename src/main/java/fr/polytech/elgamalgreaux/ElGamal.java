@@ -5,10 +5,14 @@ import java.util.List;
 
 public class ElGamal {
 
-    public static final int MESSAGE = 2;
+    public static final int MESSAGE = 5;
 
     public static void main(String[] args) {
-        elGamal(MESSAGE);
+        try {
+            elGamal(MESSAGE);
+        } catch (NotASafePrimeException e) {
+            e.printStackTrace();
+        }
 
         /*
         List<Integer> test = new ArrayList<>();
@@ -22,9 +26,15 @@ public class ElGamal {
             elGamal(i);
         }
         */
+
+        /*
+        for(int i = 1; i < 11; i++) {
+            System.out.println(i + " squared = " + (i*i)%11);
+        }
+        */
     }
 
-    public static void elGamal(int message) {
+    public static void elGamal(int message) throws NotASafePrimeException {
         System.out.println("ElGamal cryptography");
 
         Group group = new Group();
@@ -36,6 +46,7 @@ public class ElGamal {
         // Ciphering
         List<Long> encrypted = bob.encrypt(message, alice);
 
+        // If encrypted is null, it means the message is not a QR
         if(encrypted == null) return;
 
         // Verifying that the cipher is QR
